@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.wowo.mapper.IMemberInfoMapper">
+	<select id="findByPage" parameterType="map" resultType="MemberInfo">
+		select mid, nickName, realName, pwd, tel, email,
+			status, from memberinfo order by mid desc limit #{page}, #{rows}
+	</select>
+	
+	<select id="total" parameterType="boolean" resultType="int">
+		select count(mid) from memberinfo
+		<if test="_parameter == false">
+			where status !=0
+		</if>  
+	</select>
+	
+	<insert id="add" parameterType="MemberInfo">
+		insert into memberinfo values(0, #{nickName}, null, #{pwd}, null, #{email}, null, now(), 1)
+	</insert>
+	
+	<update id="update" parameterType="MemberInfo">
+		update memberinfo set #{nickName}, #{realName}, #{tel}, #{photo} where {mid}=#{mid}
+	</update>
+	
+	<select id="finds" parameterType="map" resultType="MemberInfo">
+		select mid,photo from memberinfo where nickName=#{nickName}
+	</select>
+	
+	<select id="login" parameterType="MemberInfo" resultType="MemberInfo">
+		select nickName,pwd from memberinfo where   nickName=#{nickName} and pwd=#{pwd}
+	</select>
+	
+	
+	<update id="updates" parameterType="MemberInfo">
+		update memberinfo set #{nickName}, #{realName}, #{pwd}, #{tel}, #{email}, #{status} where {mid}=#{mid}
+	</update>
+	
+	
+	<update id="updatepwd" parameterType="MemberInfo">
+		update memberinfo set #{pwd} where nickName=#{nickName}
+	</update>
+	
+	
+	
+	<select id="findByMid" parameterType="map" resultType="MemberInfo">
+		select * from memberinfo where #{mid}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

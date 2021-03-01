@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.wowo.mapper.IAdminInfoMapper">
+	<insert id="add" parameterType="AdminInfo">
+		insert into admininfo values(0, #{aname}, #{pwd}, #{tel}, null, 1)
+	</insert>
+	
+	<select id="login" parameterType="AdminInfo" resultType="AdminInfo">
+		select aid,aname,pwd from admininfo where   aname=#{aname} and pwd=#{pwd}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
